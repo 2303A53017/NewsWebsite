@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>NewsNow — Real-Time News Portal</title>
+
+  <!-- Tailwind via CDN (production: consider building with PostCSS) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+  <div class="max-w-6xl mx-auto p-4">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-3xl font-extrabold">NewsNow</h1>
+        <p class="text-sm text-gray-400">Real-time headlines — filter by country & category</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <label class="text-gray-400 text-sm">Auto-refresh</label>
+        <input id="auto-refresh" type="checkbox" class="h-5 w-5 accent-blue-400" checked />
+      </div>
+    </header>
+
+    <!-- Controls -->
+    <section class="bg-gray-800 p-4 rounded-lg border border-gray-700 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="flex gap-2">
+          <input id="q" type="search" placeholder="Search keywords (optional)" 
+                 class="flex-1 bg-gray-900 border border-gray-700 rounded px-3 py-2 focus:outline-none" />
+          <button id="search-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded">Search</button>
+        </div>
+
+        <div class="flex gap-2">
+          <select id="country-select" class="bg-gray-900 border border-gray-700 rounded px-3 py-2">
+            <option value="">All countries</option>
+            <option value="us">United States</option>
+            <option value="gb">United Kingdom</option>
+            <option value="in" selected>India</option>
+            <option value="au">Australia</option>
+            <option value="ca">Canada</option>
+            <option value="de">Germany</option>
+            <option value="fr">France</option>
+            <option value="jp">Japan</option>
+          </select>
+
+          <select id="category-select" class="bg-gray-900 border border-gray-700 rounded px-3 py-2">
+            <option value="">All categories</option>
+            <option value="business">Business</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="general" selected>General</option>
+            <option value="health">Health</option>
+            <option value="science">Science</option>
+            <option value="sports">Sports</option>
+            <option value="technology">Technology</option>
+          </select>
+
+          <select id="page-size" class="bg-gray-900 border border-gray-700 rounded px-3 py-2">
+            <option value="10">10 / page</option>
+            <option value="20" selected>20 / page</option>
+            <option value="30">30 / page</option>
+          </select>
+        </div>
+
+        <div class="flex items-center justify-end gap-2">
+          <button id="load-default" class="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded text-sm">Load Top Headlines (Default)</button>
+          <button id="api-test" class="bg-green-500 hover:bg-green-600 px-3 py-2 rounded text-sm">API Test</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats / Info -->
+    <div class="flex items-center justify-between mb-4">
+      <div class="text-sm text-gray-400" id="status">Ready</div>
+      <div class="text-sm text-gray-400">Page <span id="page-num">1</span></div>
+    </div>
+
+    <!-- Articles grid -->
+    <main id="articles" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <!-- Article cards injected here -->
+    </main>
+
+    <!-- Pagination -->
+    <nav class="flex items-center justify-between">
+      <div>
+        <button id="prev-btn" class="px-3 py-2 rounded bg-gray-800 border border-gray-700 hover:bg-gray-700">Previous</button>
+        <button id="next-btn" class="ml-2 px-3 py-2 rounded bg-gray-800 border border-gray-700 hover:bg-gray-700">Next</button>
+      </div>
+      <div class="text-sm text-gray-400" id="results-count">Results: —</div>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-xs text-gray-500">
+      Data provided by <a class="text-blue-400" href="https://newsapi.org" target="_blank" rel="noreferrer">NewsAPI.org</a>.
+      <br/>Remember API free-tier limits (requests per day / rate limits).
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
